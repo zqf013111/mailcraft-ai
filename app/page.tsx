@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { Sparkles, Copy, Check, Download, Mail, Code, Eye, Loader2 } from 'lucide-react';
 
 const EMAIL_TYPES = [
-  { value: 'newsletter', label: 'Newsletter', icon: '📧' },
-  { value: 'promotional', label: 'Promotional', icon: '🎯' },
-  { value: 'welcome', label: 'Welcome Email', icon: '👋' },
-  { value: 'transactional', label: 'Transactional', icon: '📋' },
-  { value: 'event', label: 'Event Invitation', icon: '📅' },
+  { value: 'newsletter', label: 'Newsletter', icon: '📧', example: 'A weekly newsletter from our tech blog. Include a header with our logo, featured article spotlight with thumbnail, 3 quick tips section, and footer with unsubscribe link. Brand colors: dark blue and white.' },
+  { value: 'promotional', label: 'Promotional', icon: '🎯', example: 'A promotional email for our summer sale. Include a hero banner with 30% off headline, product grid with 4 items, customer testimonial, and prominent CTA button. Brand colors are blue and white.' },
+  { value: 'welcome', label: 'Welcome Email', icon: '👋', example: 'A welcome email for new users who just signed up. Include warm greeting, 3-step getting started guide, featured feature highlights, and a support contact link. Brand colors: teal and white.' },
+  { value: 'transactional', label: 'Transactional', icon: '📋', example: 'An order confirmation email after a purchase. Include order number and date, itemized product list with images, shipping address, delivery estimate, and track order button. Clean and minimal style.' },
+  { value: 'event', label: 'Event Invitation', icon: '📅', example: 'An invitation to our upcoming webinar on AI tools. Include event title and date/time, speaker bio with headshot placeholder, agenda with 3 sessions, and RSVP button. Professional purple theme.' },
 ];
 
 export default function Home() {
@@ -131,7 +131,7 @@ export default function Home() {
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Example: A promotional email for our summer sale. Include a 30% off banner, product grid with 4 items, and a prominent CTA button. Brand colors are blue and white."
+                placeholder={EMAIL_TYPES.find(t => t.value === emailType)?.example || 'Describe your email in plain English...'}
                 className="w-full h-40 px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
               />
             </div>
