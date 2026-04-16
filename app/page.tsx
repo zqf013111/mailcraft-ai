@@ -2,6 +2,10 @@
 
 import { useState } from 'react';
 import { Sparkles, Copy, Check, Download, Mail, Code, Eye, Loader2 } from 'lucide-react';
+import ShareButtons from './components/ShareButtons';
+import EmailCapture from './components/EmailCapture';
+import FeedbackWidget from './components/FeedbackWidget';
+import LaunchOffer from './components/LaunchOffer';
 
 const EMAIL_TYPES = [
   { value: 'newsletter', label: 'Newsletter', icon: '📧', example: 'A weekly newsletter from our tech blog. Include a header with our logo, featured article spotlight with thumbnail, 3 quick tips section, and footer with unsubscribe link. Brand colors: dark blue and white.' },
@@ -83,7 +87,11 @@ export default function Home() {
             </div>
             <span className="text-xl font-bold text-slate-900">MailCraft AI</span>
           </div>
-          <div className="text-sm text-slate-500">MVP v0.1</div>
+          <div className="flex items-center gap-4">
+            <ShareButtons 
+              url={`https://mailcraft-ai.vercel.app?utm_source=share&utm_medium=social&utm_campaign=viral`}
+            />
+          </div>
         </div>
       </header>
 
@@ -171,6 +179,12 @@ export default function Home() {
                 <li>• Generated HTML works in Outlook, Gmail, Apple Mail</li>
               </ul>
             </div>
+
+            {/* Email Capture */}
+            <div className="border border-slate-200 rounded-lg p-4">
+              <h3 className="font-semibold text-slate-900 mb-3">📧 Get Product Updates</h3>
+              <EmailCapture />
+            </div>
           </div>
 
           {/* Right Panel - Output */}
@@ -204,16 +218,21 @@ export default function Home() {
                 </div>
 
                 {/* Content */}
-                <div className="h-[500px] overflow-auto">
+                <div className="h-[500px] overflow-hidden flex flex-col">
                   {activeTab === 'preview' ? (
-                    <div className="p-4 bg-slate-100">
-                      <div 
-                        className="bg-white shadow-sm"
-                        dangerouslySetInnerHTML={{ __html: generatedHTML }}
-                      />
+                    <div className="flex-1 bg-slate-100 p-4 overflow-auto">
+                      <div className="mx-auto max-w-[600px]">
+                        <iframe
+                          srcDoc={generatedHTML}
+                          className="w-full bg-white shadow-sm"
+                          style={{ minHeight: '450px', border: 'none' }}
+                          sandbox="allow-same-origin"
+                          title="Email Preview"
+                        />
+                      </div>
                     </div>
                   ) : (
-                    <div className="relative">
+                    <div className="flex-1 overflow-auto">
                       <pre className="p-4 text-sm font-mono text-slate-800 bg-slate-50 overflow-x-auto whitespace-pre-wrap">
                         {generatedHTML}
                       </pre>
@@ -262,6 +281,47 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-200 mt-16 py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-2">
+              <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center">
+                <Mail className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-sm font-medium text-slate-900">MailCraft AI</span>
+            </div>
+            <p className="text-sm text-slate-500">
+              Made for email developers who are tired of Outlook compatibility issues
+            </p>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/yourusername/mailcraft-ai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://twitter.com/mailcraftai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
+              >
+                Twitter
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      {/* Feedback Widget */}
+      <FeedbackWidget />
+      
+      {/* Launch Offer Popup */}
+      <LaunchOffer />
     </main>
   );
 }
