@@ -89,7 +89,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-4">
             <ShareButtons 
-              url={`https://mailcraft-ai.vercel.app?utm_source=share&utm_medium=social&utm_campaign=viral`}
+              url={`https://github-repo-eta.vercel.app?utm_source=share&utm
             />
           </div>
         </div>

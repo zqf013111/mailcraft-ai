@@ -9,7 +9,7 @@ interface ShareButtonsProps {
 }
 
 export default function ShareButtons({ 
-  url = 'https://mailcraft-ai.vercel.app',
+  url = 'https://github-repo-eta.vercel.app',
   title = 'MailCraft AI - Generate Outlook-safe email HTML in seconds'
 }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
