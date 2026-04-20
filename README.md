@@ -2,7 +2,7 @@
 
 > Generate email client-compatible HTML code using natural language
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Now-brightgreen)](https://mvp-ten-roan.vercel.app)
+[[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Now-brightgreen)](https://github-repo-eta.vercel.app)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## 🎯 The Problem
@@ -119,6 +119,6 @@ MIT License - see [LICENSE](LICENSE)
 
 ---
 
-**Live Demo**: [https://mvp-ten-roan.vercel.app](https://mvp-ten-roan.vercel.app)
+**Live Demo**: [https://github-repo-eta.vercel.app](https://github-repo-eta.vercel.app)
 
 Built with ❤️ by a solo developer tired of Outlook email bugs.
