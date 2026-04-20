@@ -35,25 +35,36 @@ export default function BlogPage() {
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
         {posts.map((post) => (
-          <article
+          <a
             key={post.slug}
-            style={{ border: '1px solid #e2e8f0', borderRadius: '12px', padding: '24px' }}
+            href={`/blog/${post.slug}`}
+            style={{
+              display: 'block',
+              border: '1px solid #e2e8f0',
+              borderRadius: '12px',
+              padding: '24px',
+              textDecoration: 'none',
+              color: 'inherit',
+              transition: 'border-color 0.2s',
+            }}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#93c5fd'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#e2e8f0'; }}
           >
             <div style={{ display: 'flex', gap: '12px', fontSize: '0.875rem', color: '#64748b', marginBottom: '8px' }}>
               <span>{post.date}</span>
               <span>-</span>
               <span>{post.readTime}</span>
             </div>
-            <h2 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '8px' }}>
+            <h2 style={{ fontSize: '1.5rem', fontWeight: '700', marginBottom: '8px', color: '#0f172a' }}>
               {post.title}
             </h2>
             <p style={{ color: '#475569', marginBottom: '12px' }}>
               {post.excerpt}
             </p>
             <span style={{ color: '#2563eb', fontWeight: '500' }}>
-              Read more
+              Read more →
             </span>
-          </article>
+          </a>
         ))}
       </div>
     </main>

@@ -11,6 +11,21 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://github-repo-eta.vercel.app/blog/why-outlook-breaks-email-html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://github-repo-eta.vercel.app/blog/table-layout-email-html-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://github-repo-eta.vercel.app/blog/email-html-checklist</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://github-repo-eta.vercel.app/compare</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

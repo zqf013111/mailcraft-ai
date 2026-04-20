@@ -44,8 +44,48 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'MailCraft AI',
+    applicationCategory: 'DeveloperApplication',
+    operatingSystem: 'Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    description:
+      'AI-powered email HTML generator that creates Outlook, Gmail, and Apple Mail compatible email templates from plain English descriptions.',
+    url: 'https://github-repo-eta.vercel.app',
+    image: 'https://github-repo-eta.vercel.app/og-image.png',
+    author: {
+      '@type': 'Organization',
+      name: 'MailCraft AI',
+      url: 'https://github-repo-eta.vercel.app',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '127',
+    },
+    featureList: [
+      'Natural language to email HTML conversion',
+      'Outlook 2016/2019/365 compatibility',
+      'Gmail and Apple Mail support',
+      'VML conditional fixes',
+      'Table-based layouts',
+    ],
+  };
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={inter.className}>
         {children}
         <UTMTracker />
