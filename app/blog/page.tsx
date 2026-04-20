@@ -26,7 +26,7 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <main style={{ maxWidth: '896, margin: '0 auto', padding: '64px 24px' }}>
+    <main style={{ maxWidth: '896px', margin: '0 auto', padding: '64px 24px' }}>
       <h1 style={{ fontSize: '2.5rem', fontWeight: '700', marginBottom: '16px' }}>
         Email HTML Development Blog
       </h1>

@@ -7,6 +7,7 @@ import UTMTracker from './components/UTMTracker';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://github-repo-eta.vercel.app'),
   title: {
     default: 'MailCraft AI - Generate Outlook/Gmail/Apple Mail Compatible Email HTML from Text',
     template: '%s | MailCraft AI',
@@ -24,11 +25,20 @@ export const metadata: Metadata = {
     url: 'https://github-repo-eta.vercel.app',
     siteName: 'MailCraft AI',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'MailCraft AI - Email HTML Generator',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'MailCraft AI - Email HTML Generator',
     description: 'Describe emails in English. Get HTML that works in Outlook and Gmail.',
+    images: ['/og-image.png'],
   },
   robots: { index: true, follow: true },
 };

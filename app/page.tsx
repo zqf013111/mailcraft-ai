@@ -26,33 +26,32 @@ export default function Home() {
 
   const handleGenerate = async () => {
     if (!description.trim()) return;
-    
+
     setIsLoading(true);
     setError('');
-    
+
     try {
       const response = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ description, emailType }),
       });
-      
+
       const data = await response.json();
-      
+
       if (!response.ok) {
         throw new Error(data.error || 'Failed to generate email');
       }
-      
+
       setGeneratedHTML(data.html);
-      
-      // Track generation stat
+
       fetch('/api/stats', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: emailType, action: 'generate' }),
       }).catch(() => {});
-    } catch (err: any) {
-      setError(err.message || 'Something went wrong');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
       setIsLoading(false);
     }
@@ -88,8 +87,8 @@ export default function Home() {
             <span className="text-xl font-bold text-slate-900">MailCraft AI</span>
           </div>
           <div className="flex items-center gap-4">
-            <ShareButtons 
-              url={`https://github-repo-eta.vercel.app?utm_source=share&utm
+            <ShareButtons
+              url="https://github-repo-eta.vercel.app?utm_source=share&utm_medium=social&utm_campaign=viral"
             />
           </div>
         </div>
@@ -114,20 +113,19 @@ export default function Home() {
                 Email Type
               </label>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                {EMAIL_TYPES.map((type) => (
-                  <button
-                    key={type.value}
-                    onClick={() => setEmailType(type.value)}
-                    className={`px-4 py-3 rounded-lg border text-left transition-all ${
-                      emailType === type.value
-                        ? 'border-blue-500 bg-blue-50 text-blue-700'
-                        : 'border-slate-200 hover:border-slate-300 bg-white'
-                    }`}
-                  >
-                    <span className="mr-2">{type.icon}</span>
-                    <span className="text-sm font-medium">{type.label}</span>
-                  </button>
-                ))}
+                {EMAIL_TYPES.map((type) => {
+                  const isActive = emailType === type.value;
+                  return (
+                    <button
+                      key={type.value}
+                      onClick={() => setEmailType(type.value)}
+                      className={isActive ? 'px-4 py-3 rounded-lg border text-left transition-all border-blue-500 bg-blue-50 text-blue-700' : 'px-4 py-3 rounded-lg border text-left transition-all border-slate-200 hover:border-slate-300 bg-white'}
+                    >
+                      <span className="mr-2">{type.icon}</span>
+                      <span className="text-sm font-medium">{type.label}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -195,22 +193,14 @@ export default function Home() {
                 <div className="flex border-b border-slate-200">
                   <button
                     onClick={() => setActiveTab('preview')}
-                    className={`flex-1 py-3 px-4 text-sm font-medium flex items-center justify-center gap-2 ${
-                      activeTab === 'preview'
-                        ? 'text-blue-600 border-b-2 border-blue-600'
-                        : 'text-slate-600 hover:text-slate-900'
-                    }`}
+                    className={activeTab === 'preview' ? 'flex-1 py-3 px-4 text-sm font-medium flex items-center justify-center gap-2 text-blue-600 border-b-2 border-blue-600' : 'flex-1 py-3 px-4 text-sm font-medium flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900'}
                   >
                     <Eye className="w-4 h-4" />
                     Preview
                   </button>
                   <button
                     onClick={() => setActiveTab('code')}
-                    className={`flex-1 py-3 px-4 text-sm font-medium flex items-center justify-center gap-2 ${
-                      activeTab === 'code'
-                        ? 'text-blue-600 border-b-2 border-blue-600'
-                        : 'text-slate-600 hover:text-slate-900'
-                    }`}
+                    className={activeTab === 'code' ? 'flex-1 py-3 px-4 text-sm font-medium flex items-center justify-center gap-2 text-blue-600 border-b-2 border-blue-600' : 'flex-1 py-3 px-4 text-sm font-medium flex items-center justify-center gap-2 text-slate-600 hover:text-slate-900'}
                   >
                     <Code className="w-4 h-4" />
                     HTML Code
@@ -274,7 +264,7 @@ export default function Home() {
                 </div>
                 <p className="text-lg font-medium text-slate-600 mb-2">Your email preview will appear here</p>
                 <p className="text-sm text-center max-w-sm">
-                  Describe your email on the left and click "Generate" to create HTML that works in Outlook, Gmail, and Apple Mail.
+                  Describe your email on the left and click &quot;Generate&quot; to create HTML that works in Outlook, Gmail, and Apple Mail.
                 </p>
               </div>
             )}
@@ -297,7 +287,7 @@ export default function Home() {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://github.com/yourusername/mailcraft-ai"
+                href="https://github.com/zqf013111/mailcraft-ai"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-slate-500 hover:text-slate-900 transition-colors"
@@ -319,7 +309,7 @@ export default function Home() {
 
       {/* Feedback Widget */}
       <FeedbackWidget />
-      
+
       {/* Launch Offer Popup */}
       <LaunchOffer />
     </main>
